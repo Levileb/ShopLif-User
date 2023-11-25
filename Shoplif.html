@@ -9,12 +9,36 @@
     <script srs="js/bootstrap.bundle.js"></script>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <h2>AHHAHHAHA</h2>
-    <div class="container mt-5">
-        <h1 class="display-4">Hello, Bootstrap!</h1>
-        <p class="lead">This is a simple Bootstrap-styled webpage.</p>
-        <button type="button" class="btn btn-primary">Click me</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-top">
+                Online Shop
+            </a>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    
+    <div class="container mt-3">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Product cards go here -->
+            <div class="col">
+                <div class="card">
+                    <img src="product1.jpg" class="card-img-top" alt="Product 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Product 1</h5>
+                        <p class="card-text">Description of Product 1.</p>
+                        <a href="#" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more product cards as needed -->
+        </div>
     </div>
 </body>
+<script src="node_modules\@popperjs\core\dist\umd\popper.min.js"></script>
+<script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
 </html>
