@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shoplif</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+<<<<<<< HEAD
     <link rel="stylesheet" href="./dist/style/style.min.css"/>
     <script srs="js/bootstrap.bundle.js"></script>
 </head>
@@ -35,8 +36,90 @@
                 </div>
             </div>
         </div>
+=======
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Custom styles for adjusting container size and product boxes */
+        #app-bar {
+            background-color: #343a40; /* Dark background color for app bar */
+            color: rgb(11, 0, 0);
+            padding: 10px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #product-container {
+            display: flex;
+            color: rgb(11, 0, 0);
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start; /* Align items at the start to create rows */
+            max-height: 100vh; /* Set the max-height to make it scrollable */
+            overflow-y: auto; /* Enable vertical scrolling if needed */
+        }
+
+        .product-box {
+            width: 23%; /* Adjusted width to fit 4 boxes in a row with some margin */
+            margin: 10px; /* Added margin between the boxes */
+            box-sizing: border-box; /* Include padding and border in the box's total width */
+        }
+    </style>
+</head>
+<body>
+    <div id="app-bar" class="container-fluid">
+        <!-- Logo -->
+        <img src="assets/logo.svg" alt="Logo" width="80" height="60" class="d-inline-block align-top">
+
+        <!-- Search bar -->
+        <form class="d-flex">
+            <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning" type="submit">Search</button>
+        </form>
+    </div>
+    <div><div class="container mt-3" id="product-container"></div>
+    <script>
+        $(document).ready(function() {
+            // Firebase Realtime Database REST API URL
+            var firebaseApiUrl = "https://shopping-inventory-1f558-default-rtdb.firebaseio.com/ShopItems.json";
+
+            // Fetch and display products using REST API
+            fetch(firebaseApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var productContainer = $("#product-container");
+
+                    // Iterate through the data and create product boxes
+                    Object.keys(data).forEach(function(itemId) {
+                        var productData = data[itemId];
+
+                        // Create product box
+                        var productBox = `
+                            <div class="col product-box">
+                                <div class="card">
+                                    <img src="${productData.itemImage}" class="card-img-top" alt="${productData.itemName}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${productData.itemName}</h5>
+                                        <p class="card-text">${productData.itemDescription}</p>
+                                        <p class="card-text">Price: $${productData.itemPrice}</p>
+                                        <p class="card-text">Stock: ${productData.itemStock}</p>
+                                        <a href="#" class="btn btn-primary">Buy Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        // Append product box to the container
+                        productContainer.append(productBox);
+                    });
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        });
+    </script>
+    <script src="node_modules\@popperjs\core\dist\umd\popper.min.js"></script>
+    <script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script></div>
+>>>>>>> 04f625d1ff4cfcafc0e0ad8aa089af2652bd7091
     </div>
 </body>
-<script src="node_modules\@popperjs\core\dist\umd\popper.min.js"></script>
-<script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
 </html>
