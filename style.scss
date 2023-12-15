@@ -1,0 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins:wght@300;400;700&display=swap');
+
+$primary: #9f1e6d;
+$secondary: #3c0b29;
+$body-bg-dark: #101010;
+
+$custom-colors: (
+  "textColor": #f8ddee,
+  "accentColor": #d93a9c,
+);
+
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+.font-agbalumo {
+  font-family: "Agbalumo", cursive;
+}
