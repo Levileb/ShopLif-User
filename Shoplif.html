@@ -5,79 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoplif</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="./dist/style/style.min.css"/>
-    <script srs="js/bootstrap.bundle.js"></script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="assets/logo.svg" alt="Logo" width="80" height="60" class="d-inline-block align-top" href="#">
-            </a>
-            <form class="d-flex">
-                <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary me-5" type="submit">Search</button>
-
-            </form>
-        </div>
-    </nav>
-    
-    <div class="container mt-3">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="product1.jpg" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 1</h5>
-                        <p class="card-text">Description of Product 1.</p>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-=======
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./dist/style/style.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         /* Custom styles for adjusting container size and product boxes */
         #app-bar {
-            background-color: #343a40; /* Dark background color for app bar */
             color: rgb(11, 0, 0);
-            padding: 10px; 
-            display: flex;
-            justify-content: space-between;
+            padding: 10px 95px 12px 35px; 
             align-items: center;
+            overflow: hidden;
         }
 
         #product-container {
-            display: flex;
             color: rgb(11, 0, 0);
             flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: flex-start; /* Align items at the start to create rows */
-            max-height: 100vh; /* Set the max-height to make it scrollable */
-            overflow-y: auto; /* Enable vertical scrolling if needed */
+            justify-content: space-between;
+            align-items: left;
+            max-height: 100vh;
+            overflow-y: scroll;
+            background-color: transparent;
+            display: flex;
+            flex-direction: row;
         }
 
         .product-box {
-            width: 23%; /* Adjusted width to fit 4 boxes in a row with some margin */
-            margin: 10px; /* Added margin between the boxes */
-            box-sizing: border-box; /* Include padding and border in the box's total width */
+            width: 50vh; 
+            margin: 10px; 
+            box-sizing: border-box;
+
         }
+        .card{
+            width: 30vh;
+            height: 50vh;
+        }
+        .card-img-top{
+            height: 230px;
+            width: 222px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: transparent; }
+          
+        body::-webkit-scrollbar-track {
+            background-color: transparent; 
+          }
+        body::-webkit-scrollbar {
+            width: 12px;
+          }
+        #product-container::-webkit-scrollbar {
+            width: 12px;
+          }
+          
+        #product-container::-webkit-scrollbar-thumb {
+            background-color: transparent; }
+          
+        #product-container::-webkit-scrollbar-track {
+            background-color: transparent; 
+          }
+          .card-title{
+            font-size: 18px;
+          }
     </style>
 </head>
 <body>
-    <div id="app-bar" class="container-fluid">
+    <div id="app-bar" class="container-expand-lg bg-secondary">
         <!-- Logo -->
-        <img src="assets/logo.svg" alt="Logo" width="80" height="60" class="d-inline-block align-top">
+        <div class="row align-items-center">
+            <div class="col">
+                <img src="assets/logo.svg" alt="Logo" width="80" height="60" class="d-inline-block align-top">
+            </div>
+            <div class="col">
 
+            </div>
+            <div class="col">
+                <form class="d-flex">
+                    <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
         <!-- Search bar -->
-        <form class="d-flex">
-            <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-warning" type="submit">Search</button>
-        </form>
     </div>
+    <div class="col"></div>
     <div><div class="container mt-3" id="product-container"></div>
     <script>
         $(document).ready(function() {
@@ -101,9 +109,7 @@
                                     <img src="${productData.itemImage}" class="card-img-top" alt="${productData.itemName}">
                                     <div class="card-body">
                                         <h5 class="card-title">${productData.itemName}</h5>
-                                        <p class="card-text">${productData.itemDescription}</p>
                                         <p class="card-text">Price: $${productData.itemPrice}</p>
-                                        <p class="card-text">Stock: ${productData.itemStock}</p>
                                         <a href="#" class="btn btn-primary">Buy Now</a>
                                     </div>
                                 </div>
@@ -119,7 +125,6 @@
     </script>
     <script src="node_modules\@popperjs\core\dist\umd\popper.min.js"></script>
     <script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script></div>
->>>>>>> 04f625d1ff4cfcafc0e0ad8aa089af2652bd7091
     </div>
 </body>
 </html>
