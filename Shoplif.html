@@ -8,12 +8,9 @@
     <link rel="stylesheet" href="./dist/style/style.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
-        /* Custom styles for adjusting container size and product boxes */
         #app-bar {
             color: rgb(11, 0, 0);
             padding: 10px 95px 12px 35px; 
-            align-items: center;
-            overflow: hidden;
         }
 
         #product-container {
@@ -21,7 +18,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: left;
-            max-height: 100vh;
+            max-height: 84vh;
             overflow-y: scroll;
             background-color: transparent;
             display: flex;
@@ -36,7 +33,7 @@
 
         .card {
             width: 30vh;
-            height: 50vh;
+            height: 52vh;
         }
 
         .card-img-top {
@@ -44,17 +41,6 @@
             width: 222px;
         }
 
-        body::-webkit-scrollbar-thumb {
-            background-color: transparent;
-        }
-
-        body::-webkit-scrollbar-track {
-            background-color: transparent; 
-        }
-
-        body::-webkit-scrollbar {
-            width: 12px;
-        }
 
         #product-container::-webkit-scrollbar {
             width: 12px;
@@ -81,26 +67,30 @@
         .form-check {
             margin-bottom: 10px;
         }
+        #buttonu{
+            margin-bottom: 10px;
+            margin-left: 15px;
+        }
     </style>
 </head>
 <body>
-    <div id="app-bar" class="container-expand-lg bg-secondary">
+   <span>
+    <div id="app-bar" class="bg-secondary">
         <!-- Logo -->
         <div class="row align-items-center">
             <div class="col">
-                <img src="assets/logo.svg" alt="Logo" width="80" height="60" class="d-inline-block align-top">
+                <img src="assets/logo.svg" alt="Logo" width="90" height="75" class="d-inline-block align-top">
             </div>
             <div class="col"></div>
             <div class="col">
                 <form class="d-flex">
-                    <!-- Modify search input to filter by item name -->
                     <input id="searchInput" class="form-control me-4" type="search" placeholder="Search by Item Name" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
             </div>
         </div>
-        <!-- Search bar -->
     </div>
+   </span>
     <div class="container mt-3">
         <div class="row">
             <div id="classification-container" class="col-lg-2">
@@ -178,8 +168,8 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">${productData.itemName}</h5>
                                                 <p class="card-text">Price: $${productData.itemPrice}</p>
-                                                <a href="#" class="btn btn-primary">Buy Now</a>
                                             </div>
+                                            <div> <a href="#" id="buttonu" class="btn btn-primary">Buy Now</a> </div>
                                         </div>
                                     </div>
                                 `;
