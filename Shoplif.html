@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoplif</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/style/style.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        #app-bar {
+            color: rgb(11, 0, 0);
+            padding: 10px 95px 12px 35px; 
+        }
+
+        #product-container {
+            color: rgb(11, 0, 0);
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: left;
+            max-height: 84vh;
+            overflow-y: scroll;
+            background-color: transparent;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .product-box {
+            width: 50vh; 
+            margin: 10px; 
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 30vh;
+            height: 52vh;
+        }
+
+        .card-img-top {
+            height: 230px;
+            width: 222px;
+        }
+
+
+        #product-container::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        #product-container::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
+
+        #product-container::-webkit-scrollbar-track {
+            background-color: transparent; 
+        }
+
+        .card-title {
+            font-size: 18px;
+        }
+
+        /* Custom styles for checkboxes and classification container */
+        #classification-container {
+            padding: 10px;
+            background-color: #101010;
+        }
+
+        .form-check {
+            margin-bottom: 10px;
+        }
+        #buttonu{
+            margin-bottom: 10px;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+   <span>
+    <div id="app-bar" class="bg-secondary">
+        <!-- Logo -->
+        <div class="row align-items-center">
+            <div class="col">
+                <img src="assets/logo.svg" alt="Logo" width="90" height="75" class="d-inline-block align-top">
+            </div>
+            <div class="col"></div>
+            <div class="col">
+                <form class="d-flex">
+                    <input id="searchInput" class="form-control me-4" type="search" placeholder="Search by Item Name" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+   </span>
+    <div class="container mt-3">
+        <div class="row">
+            <div id="classification-container" class="col-lg-2">
+                <h5>Filter by Classification</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Toys" id="checkboxToys">
+                    <label class="form-check-label" for="checkboxElectronics">
+                        Toys
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Clothing" id="checkboxClothing">
+                    <label class="form-check-label" for="checkboxClothing">
+                        Clothing
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Sports" id="checkboxSports">
+                    <label class="form-check-label" for="checkboxClothing">
+                        Sports
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Electronics" id="checkboxElectronics">
+                    <label class="form-check-label" for="checkboxClothing">
+                        Electronics
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Books" id="checkboxBooks">
+                    <label class="form-check-label" for="checkboxClothing">
+                        Books
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Beauty" id="checkboxBeauty">
+                    <label class="form-check-label" for="checkboxClothing">
+                        Beauty
+                    </label>
+                </div>
+
+            </div>
+            <!-- Product container -->
+            <div id="product-container" class="col-lg-10"></div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            // Firebase Realtime Database REST API URL
+            var firebaseApiUrl = "https://shopping-inventory-1f558-default-rtdb.firebaseio.com/ShopItems.json";
+
+            // Fetch and display products using REST API
+            fetch(firebaseApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var productContainer = $("#product-container");
+
+                    // Function to update product container based on search and checkboxes
+                    function updateProductContainer(searchItemName, selectedClassifications) {
+                        // Clear existing products
+                        productContainer.empty();
+
+                        // Iterate through the data and create product boxes
+                        Object.keys(data).forEach(function (itemId) {
+                            var productData = data[itemId];
+
+                            // Check if the item name contains the search term and is selected in checkboxes
+                            if ((searchItemName === "" || productData.itemName.toLowerCase().includes(searchItemName.toLowerCase())) &&
+                                (selectedClassifications.length === 0 || selectedClassifications.includes(productData.itemClassification))) {
+                                // Create product box
+                                var productBox = `
+                                    <div class="col product-box">
+                                        <div class="card">
+                                            <img src="${productData.itemImage}" class="card-img-top" alt="${productData.itemName}">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${productData.itemName}</h5>
+                                                <p class="card-text">Price: $${productData.itemPrice}</p>
+                                            </div>
+                                            <div> <a href="#" id="buttonu" class="btn btn-primary">Buy Now</a> </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                // Append product box to the container
+                                productContainer.append(productBox);
+                            }
+                        });
+                    }
+
+                    // Add event listener to the search form
+                    $("form").submit(function (event) {
+                        event.preventDefault();
+                        var searchItemName = $("#searchInput").val();
+                        var selectedClassifications = getSelectedClassifications();
+                        updateProductContainer(searchItemName, selectedClassifications);
+                    });
+
+                    // Add event listener to checkboxes
+                    $("[id^='checkbox']").change(function () {
+                        var searchItemName = $("#searchInput").val();
+                        var selectedClassifications = getSelectedClassifications();
+                        updateProductContainer(searchItemName, selectedClassifications);
+                    });
+
+                    // Function to get selected checkboxes' values
+                    function getSelectedClassifications() {
+                        var selectedClassifications = [];
+                        $("[id^='checkbox']:checked").each(function () {
+                            selectedClassifications.push($(this).val());
+                        });
+                        return selectedClassifications;
+                    }
+
+                    // Initialgit submodule update --init --recursive load without search and checkboxes
+                    updateProductContainer("", []);
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        });
+    </script>
+    <script src="node_modules\@popperjs\core\dist\umd\popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/font-awesome.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
