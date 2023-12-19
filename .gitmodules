@@ -1,5 +1,5 @@
-git add .gitmodules
-git commit -m "Update submodule URL"
-git push
+[submodule "submodule_name"]git add .gitmodules
+    path = submodule_path
+    url = https://github.com/Levileb/ShopLif-User.git
 [submodule "submodule_path"]
 	url = https://github.com/Levileb/ShopLif-User/actions/runs/7256969798/job/19770049559
