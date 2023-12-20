@@ -20,7 +20,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: left;
-            max-height: 84vh;
+            max-height: 83vh;
             overflow-y: scroll;
             background-color: transparent;
             display: flex;
@@ -39,8 +39,8 @@
         }
 
         .card-img-top {
-            height: 230px;
-            width: 222px;
+            height: 55%;
+            width: auto;
         }
 
 
@@ -57,10 +57,11 @@
         }
 
         .card-title {
-            font-size: 16px;
+            font-size: 15px;
         }
         .card-text {
-            font-size: 13px;
+            font-size: 14px;
+            color: gray;
         }
 
         /* Custom styles for checkboxes and classification container */
@@ -68,9 +69,13 @@
             padding: 10px;
             background-color: #101010;
         }
-
         .form-check {
             margin-bottom: 10px;
+        }
+        .conti{
+            margin-bottom: 12px;
+            margin-left: 15px;
+            position: relative;
         }
         #buttonu{
             margin-bottom: 10px;
@@ -172,6 +177,8 @@
                                             <img src="${productData.itemImage}" class="card-img-top" alt="${productData.itemName}">
                                             <div class="card-body">
                                                 <p class="card-title">${productData.itemName}</p>
+                                            </div>
+                                            <div class="conti">
                                                 <p class="card-text">Price: $${productData.itemPrice}</p>
                                             </div>
                                             <div> <a href="#" id="buttonu" class="btn btn-primary">Buy Now</a> </div>
